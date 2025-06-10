@@ -103,20 +103,17 @@ class Weather {
 
           const response = await this.axiosInstance.get('/forecast', {
             params: {
+              latitude: args.latitude,
+              longitude: args.longitude,
               current: 'temperature_2m,wind_speed_10m',
               hourly: 'temperature_2m,relative_humidity_2m,wind_speed_10m'
             }
           });
 
-          if (response.data.code !== '0') {
-            throw new Error(`Weather API error: ${response.data.msg}`);
+          if (!response.data || !response.data.current) {
+            throw new Error('No current weather data returned from Weather API');
           }
 
-          if (!response.data.data || response.data.data.length === 0) {
-            throw new Error('No data returned from Weather API');
-          }
-
-          return response.data;
         }
       } catch (error: unknown) {
         if (error instanceof Error) {
