@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import axios, { AxiosInstance } from 'axios';
 
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
