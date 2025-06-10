@@ -72,7 +72,7 @@ class Weather {
       ]
     }));
 
-    this.server.setRequestHandler(CallToolRequestSchema, async (request) => {
+    this.server.setRequestHandler(CallToolRequestSchema, async (request: any): Promise<any> => {
       try {
         if (!['get-weather'].includes(request.params.name)) {
           throw new McpError(
